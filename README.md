@@ -4,6 +4,12 @@ This module allows a developer to upload SAPUI5/OpenUI5 sources into a SAP NetWe
 The main reason for developing this module is to integrate the deployment process into a Continuous Integration environment, in which for instance a Jenkins server executes several build steps and finally deploys the sources to a SAP NetWeaver ABAP system if all previous build steps are ok.
 The plugin also allows a developer to deploy the sources to a SAP NetWeaver ABAP system by a npm script using a different IDE than Eclipse or SAP Web IDE (for instance WebStorm).
 
+## Donations
+
+If you like this port / you find it useful / it has value enough to donate:
+
+Ethereum address: {123}
+
 ## Prerequisites
 
 ### ABAP Development Tool Services
@@ -13,18 +19,24 @@ The plugin is tested with NW 7.30, NW 7.40 and NW 7.50 systems.
 
 ## Install
 
-`npm install nwabap-ui5uploader --save-dev`
+Add it to your local project and use npx to run the binary using a `npx` prefix:
+
+```npm install nwabap-ui5uploader --save-dev```
+
+Or just install globally and skip the npx prefix in the examples below:
+
+```npm install -g nwabap-ui5uploader```
 
 ## Usage
 
 This node module describes itself on the command line.
 
 ```
-nwabap --help
+npx nwabap --help
 ```
 
 ```
-nwabap upload --help
+npx nwabap upload --help
 ```
 
 ## Examples
@@ -34,13 +46,13 @@ Create a npm script that runs the `nwabap` module with the arguments you want.
 ### Upload to $TMP package
 
 ```
-nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package $TMP --abap_bsp ZZ_UI5_LOCAL --abap_bsp_text 'UI5 upload local objects'
+npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package $TMP --abap_bsp ZZ_UI5_LOCAL --abap_bsp_text "UI5 upload local objects"
 ```
 
 ### Upload to a transport tracked package
 
 ```
-nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package ZFRONTENDS_TEST --abap_bsp ZABSHR --abap_bsp_text 'Absence HR' --abap_transport PRDNK1230120032
+npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package ZFRONTENDS_TEST --abap_bsp ZABSHR --abap_bsp_text "Absence HR" --abap_transport PRDNK1230120032
 ```
 
 ## Release History
