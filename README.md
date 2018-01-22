@@ -7,7 +7,7 @@ The plugin also allows a developer to deploy the sources to a SAP NetWeaver ABAP
 This module is based on the original gulp and grunt plugins. Though I didn't like the need of gulp or grunt in my projects purely for CI/CD.
 
 ## Donations
-If you like this port, you find it useful, it has value enough, please donate! :blush:
+If you like this port, you find it useful, it has value enough: please donate! ☺️
 
 Ethereum address: 0x951E9eDabD9C41B9A8386091E731Ab15FF574D4f
 

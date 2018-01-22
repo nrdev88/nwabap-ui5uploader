@@ -1,3 +1,8 @@
+## 0.1.5 (2018-01-22)
+
+- Added contribution request to README.md
+- Updated README.md
+
 ## 0.1.4 (2018-01-22)
 
 - Fix for gathering files
