@@ -104,7 +104,7 @@ function UploadCommand () {
                     cwd: options.base,
                     nodir: true
                 }).map(file => {
-                    files.push(file);
+                    files.push(options.base + '/' + file);
                 });
             } catch(e) {
                 console.log(colors.red('Error!'), e);
