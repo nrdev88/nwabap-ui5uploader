@@ -1,0 +1,6 @@
+# node/npm
+/node_modules
+
+# ide
+/.idea
+/*.iml

@@ -1,0 +1,47 @@
+{
+  "name": "nwabap-ui5uploader",
+  "version": "0.1.0",
+  "description": "Deploying a SAPUI5/OpenUI5 file structure to SAP NetWeaver ABAP via ADT (ABAP Developer Tools)",
+  "keywords": [
+    "npm module",
+    "ui5",
+    "NetWeaver",
+    "SAP",
+    "ABAP",
+    "ADT",
+    "Web IDE",
+    "deploy",
+    "deployment",
+    "ci/cd"
+  ],
+  "author": "Nick Rappoldt <nickrappoldt@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://nickrappoldt.nl",
+  "bugs": {
+    "url": "https://github.com/nrdev88/nwabap-ui5uploader/issues"
+  },
+  "main": "cli/bootstrap.js",
+  "bin": {
+    "nwabap": "./bin/nwabap.js"
+  },
+  "engines": {
+    "node": ">= 8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nrdev88/nwabap-ui5uploader.git"
+  },
+  "dependencies": {
+    "async": "^2.6.0",
+    "clear": "0.0.1",
+    "colors": "^1.1.2",
+    "commander": "^2.13.0",
+    "figlet": "^1.2.0",
+    "glob": "^7.1.2",
+    "gulp-util": "^3.0.8",
+    "isbinaryfile": "^3.0.2",
+    "resolve": "^1.5.0",
+    "unirest": "^0.5.1",
+    "xmldoc": "^0.4.0"
+  }
+}
