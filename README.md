@@ -53,4 +53,4 @@ npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user u
 [CHANGELOG.md](CHANGELOG.md)
 
 ## Contribute
-My actual goal is to remove all unnecessary code and libs, except console coloring libs since I find these really helpful. I would also like to rewrite the libs used ([filestore](lib/filestore.js) and [filestoreutils](lib/filestoreutils.js)).
+My actual goal is to remove all unnecessary code and libs, except console coloring libs since I find these really helpful. I would also like to rewrite the libs used ([filestore](lib/filestore.js) and [filestoreutils](lib/filestoreutils.js)). Please, and feel free to help me anytime on the project's [GitHub](https://github.com/nrdev88/nwabap-ui5uploader).
