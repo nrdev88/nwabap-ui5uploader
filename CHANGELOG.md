@@ -1,3 +1,7 @@
+## 0.1.4 (2018-01-22)
+
+- Fix for gathering files
+
 ## 0.1.3 (2018-01-22)
 
 - README.md updated

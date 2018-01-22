@@ -1,6 +1,6 @@
 {
   "name": "nwabap-ui5uploader",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Deploying a SAPUI5/OpenUI5 file structure to SAP NetWeaver ABAP via ADT (ABAP Developer Tools)",
   "keywords": [
     "npm module",
