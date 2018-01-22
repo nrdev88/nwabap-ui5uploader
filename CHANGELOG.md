@@ -1,3 +1,7 @@
+## 0.1.3 (2018-01-22)
+
+- README.md updated
+
 ## 0.1.2 (2018-01-22)
 
 - Added npm >= 5.2.0 dependency
