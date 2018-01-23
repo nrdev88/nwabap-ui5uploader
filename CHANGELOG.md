@@ -1,3 +1,7 @@
+## 0.1.6 - 0.2.0 (2018-01-22)
+
+- npmjs.org doesn't update README.md
+
 ## 0.1.5 (2018-01-22)
 
 - Added contribution request to README.md
