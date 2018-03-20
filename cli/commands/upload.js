@@ -1,6 +1,7 @@
 "use strict";
 const program = require('commander');
 const colors = require('colors');
+const fs = require('fs');
 const FileStore = require('../../lib/filestore');
 const glob = require('glob');
 
@@ -38,6 +39,10 @@ function UploadCommand () {
                 calcappindex: false
             };
 
+            if (fs.existsSync('.nwabaprc')) {
+                Object.assign(options, JSON.parse(fs.readFileSync('.nwabaprc', 'utf8')));
+            }
+            
             Object.keys(options).map(key => {
                 if (_options[key] !== undefined) {
                     options[key] = _options[key];
