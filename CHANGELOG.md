@@ -1,3 +1,7 @@
+## 0.3.1 (2018-03-23)
+
+- Fixed release
+
 ## 0.3 (2018-03-23)
 
 - Support for configuration file
