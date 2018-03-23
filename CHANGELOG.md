@@ -1,3 +1,7 @@
+## 0.3 (2018-03-23)
+
+- Support for configuration file
+
 ## 0.2.1 - 0.2.2 (2018-01-23)
 
 - npmjs.org doesn't update README.md
