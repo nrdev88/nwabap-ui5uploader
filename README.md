@@ -27,7 +27,7 @@ Or just install globally and skip the `npx`-prefix in the examples below:
 ```npm install -g nwabap-ui5uploader```
 
 ## Usage
-This node module describes itself on the command line.
+This node module describes itself on the command line. Use your favorite CI/CD configuration to call this module.
 
 ```
 npx nwabap --help
@@ -36,29 +36,9 @@ npx nwabap --help
 npx nwabap upload --help
 ```
 
-## Examples
-Create a npm script that runs the `nwabap` module with the arguments you want.
-
-### Upload to $TMP package
+### Configuration
+It is possible to use a configuration file. Create a `.nwabaprc` file in your package root, i.e.:
 ```
-npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package $TMP --abap_bsp ZZ_UI5_LOCAL --abap_bsp_text "UI5 upload local objects"
-```
-
-### Upload to a transport tracked package
-```
-npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package ZFRONTENDS_TEST --abap_bsp ZABSHR --abap_bsp_text "Absence HR" --abap_transport PRDNK1230120032
-```
-
-### (optional) use a configuartion file
-```
-It is possible to add a script to package.json and a configuration file. Use "npm run upload" or "yarn upload" to upload the sources to SAP.   
-
-"scripts": {
-    "upload": "npx nwabap upload"
-}
-
-Also create a cofiguration file ".nwabaprc" 
-
 {
     "base": "./dist",
     "conn_server": "http://myserver:8000",
@@ -68,6 +48,26 @@ Also create a cofiguration file ".nwabaprc"
     "abap_bsp": "ZZ_UI5_LOCAL",
     "abap_bsp_text": "UI5 upload local objects"
 }
+```
+NOTE: command line arguments are ordered to be mapped after the configuration file. This means that the command line arguments override individual configuration file attributes.
+
+### Examples
+#### Upload to $TMP package
+```
+npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package $TMP --abap_bsp ZZ_UI5_LOCAL --abap_bsp_text "UI5 upload local objects"
+```
+
+#### Upload to a transport tracked package
+```
+npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package ZFRONTENDS_TEST --abap_bsp ZABSHR --abap_bsp_text "Absence HR" --abap_transport PRDNK1230120032
+```
+
+#### Use package.json script
+```
+"scripts": {
+    "upload": "npx nwabap upload"
+}
+
 ```
 
 ## Release History
