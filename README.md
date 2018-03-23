@@ -49,6 +49,27 @@ npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user u
 npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user upload --conn_password upl04d --abap_package ZFRONTENDS_TEST --abap_bsp ZABSHR --abap_bsp_text "Absence HR" --abap_transport PRDNK1230120032
 ```
 
+### (optional) use a configuartion file
+```
+It is possible to add a script to package.json and a configuration file. Use "npm run upload" or "yarn upload" to upload the sources to SAP.   
+
+"scripts": {
+    "upload": "npx nwabap upload"
+}
+
+Also create a cofiguration file ".nwabaprc" 
+
+{
+    "base": "./dist",
+    "conn_server": "http://myserver:8000",
+    "conn_user": "upload",
+    "conn_password": "upl04d",
+    "abap_package": "$TMP",
+    "abap_bsp": "ZZ_UI5_LOCAL",
+    "abap_bsp_text": "UI5 upload local objects"
+}
+```
+
 ## Release History
 [CHANGELOG.md](CHANGELOG.md)
 
