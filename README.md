@@ -3,8 +3,8 @@ This module allows a developer to upload SAPUI5/OpenUI5 sources into a SAP NetWe
 The main reason for developing this module is to integrate the deployment process into a Continuous Integration environment, in which for instance a Jenkins server executes several build steps and finally deploys the sources to a SAP NetWeaver ABAP system if all previous build steps are ok.
 The plugin also allows a developer to deploy the sources to a SAP NetWeaver ABAP system by a npm script using a different IDE than Eclipse or SAP Web IDE (for instance WebStorm).
 
-### Based on original gulp and grunt plugins
-This module is based on the original gulp and grunt plugins. Though I didn't like the need of gulp or grunt in my projects purely for CI/CD.
+### Based on grunt-nwabap-ui5uploader package
+This module is based on the original grunt [plugin](https://github.com/pfefferf/grunt-nwabap-ui5uploader). Though I didn't like the need of gulp or grunt in my projects purely for CI/CD.
 
 ## Donations
 If you like this port, you find it useful, it has value enough: please donate! ☺️
