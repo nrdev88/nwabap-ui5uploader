@@ -13,7 +13,7 @@ function UploadCommand () {
         .option("--conn_user <conn_user>", "SAP user")
         .option("--conn_password <conn_password>", "SAP password")
         .option("--conn_client <conn_client>", "Optional parameter to specify the client (transferred as sap-client URL parameter). In case the option is not specified the default client is used if specified.")
-        .option("--usestrictssl <conn_usestrictssl>", "Default: true. SSL mode handling. In case of self signed certificates the useStrictSSL mode option can be set to false to allow an upload of files.")
+        .option("--conn_usestrictssl <conn_usestrictssl>", "Default: true. SSL mode handling. In case of self signed certificates the useStrictSSL mode option can be set to false to allow an upload of files.")
         .option("--base <base>", "Base dir")
         .option("--files <files>", "Files to upload (relative from basedir)")
         .option("--abap_transport <abap_transport>", "ABAP transport no.")
