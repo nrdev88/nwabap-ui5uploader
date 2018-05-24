@@ -1,6 +1,7 @@
 ## 0.3.2 (2018-04-04)
 
-- Added LICENSE
+- Fixed bug where strict SSL couldn't be used
+- Updated packages fixing high risk vulnerabilities
 
 ## 0.3.1 (2018-03-23)
 
