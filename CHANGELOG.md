@@ -1,3 +1,7 @@
+## 0.3.4 (2019-02-25)
+
+- Updated packages fixing some vulnerabilities
+
 ## 0.3.3 (2018-05-24)
 
 - Updated packages fixing some vulnerabilities
