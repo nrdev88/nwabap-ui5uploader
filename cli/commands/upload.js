@@ -3,7 +3,7 @@ const program = require('commander');
 const colors = require('colors');
 const fs = require('fs');
 const FileStore = require('../../lib/filestore');
-const glob = require('glob');
+const glob = require('fast-glob');
 
 function UploadCommand () {
     return program
@@ -42,7 +42,7 @@ function UploadCommand () {
             if (fs.existsSync('.nwabaprc')) {
                 Object.assign(options, JSON.parse(fs.readFileSync('.nwabaprc', 'utf8')));
             }
-            
+
             Object.keys(options).map(key => {
                 if (_options[key] !== undefined) {
                     options[key] = _options[key];
@@ -107,7 +107,7 @@ function UploadCommand () {
 
                 glob.sync(options.files, {
                     cwd: options.base,
-                    nodir: true
+                    onlyFiles: true
                 }).map(file => {
                     files.push(file);
                 });
