@@ -23,8 +23,9 @@ function UploadCommand () {
         .option("--abap_bsp_text <abap_bsp_text>", "ABAP BSP container name")
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
-        .option("--git_diff_commit", "Git commit to compare working tree with when selecting files to upload")
-        .option("--preserve_untracked", "Don't delete files from BSP container, that were not tracked locally")        
+        .option("--git_diff_commit", "Git commit to compare working tree with when selecting files to upload.")
+        .option("--git_diff_unstaged", "Include unstaged files in git diff.")
+        .option("--preserve_untracked", "Don't delete files from BSP container, that were not tracked locally.")
         .action(function(_options){
             const options = {
                 conn_server: "",
@@ -41,6 +42,7 @@ function UploadCommand () {
                 abap_language: "EN",
                 calcappindex: false,
                 git_diff_commit: "",
+                git_diff_unstaged: false,
                 preserve_untracked: false
             };
 
@@ -113,8 +115,9 @@ function UploadCommand () {
                 if (options.git_diff_commit) {
                     files = git.diff(
                         options.base,
+                        options.files,                        
                         options.git_diff_commit,
-                        options.files
+                        options.git_diff_unstaged
                     );
                 } else {
                     files = glob.sync(options.files, {
