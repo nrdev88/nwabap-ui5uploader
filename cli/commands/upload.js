@@ -23,9 +23,9 @@ function UploadCommand () {
         .option("--abap_bsp_text <abap_bsp_text>", "ABAP BSP container name")
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
-        .option("--git_diff_commit", "Git commit to compare working tree with when selecting files to upload.")
+        .option("--git_diff_commit", "Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) sinse specified state.")
         .option("--git_diff_unstaged", "Include unstaged files in git diff.")
-        .option("--preserve_untracked", "Don't delete files from BSP container, that were not tracked locally.")
+        .option("--preserve_unselected", "Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.")
         .action(function(_options){
             const options = {
                 conn_server: "",
@@ -43,7 +43,7 @@ function UploadCommand () {
                 calcappindex: false,
                 git_diff_commit: "",
                 git_diff_unstaged: false,
-                preserve_untracked: false
+                preserve_unselected: false
             };
 
             if (fs.existsSync('.nwabaprc')) {
@@ -156,7 +156,7 @@ function UploadCommand () {
                     bspcontainer_text: options.abap_bsp_text,
                     calc_appindex: (options.calcappindex === true || options.calcappindex === "true" || options.calcappindex === "1")
                 },
-                preserveUntracked: options.preserve_untracked
+                preserveUnselected: options.preserve_unselected
             });
             filestore.syncFiles(files, options.base, function (err) {
                 if (err) {
