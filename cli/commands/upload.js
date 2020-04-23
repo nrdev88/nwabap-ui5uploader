@@ -23,7 +23,7 @@ function UploadCommand () {
         .option("--abap_bsp_text <abap_bsp_text>", "ABAP BSP container name")
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
-        .option("--git_diff_commit", "Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) sinse specified state.")
+        .option("--git_diff_commit", "Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) since specified state.")
         .option("--git_diff_unstaged", "Include unstaged files in git diff.")
         .option("--preserve_unselected", "Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.")
         .action(function(_options){

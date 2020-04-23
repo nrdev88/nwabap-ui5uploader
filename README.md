@@ -65,7 +65,7 @@ NOTE: command line arguments are ordered to be mapped after the configuration fi
 | abap_bsp_text       |         | ABAP BSP container name
 | abap_language       | EN      | ABAP language
 | calcappindex        | `false` | Re-calculate application index
-| git_diff_commit     |         | Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) sinse specified state.
+| git_diff_commit     |         | Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) since specified state.
 | git_diff_unstaged   | `false` | Include unstaged files in git diff.
 | preserve_unselected | `false` | Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.
 
