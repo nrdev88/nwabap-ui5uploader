@@ -51,6 +51,24 @@ It is possible to use a configuration file. Create a `.nwabaprc` file in your pa
 ```
 NOTE: command line arguments are ordered to be mapped after the configuration file. This means that the command line arguments override individual configuration file attributes.
 
+| Option              | Default | Description |
+|---------------------|---------|-------------|
+| conn_server         |         | SAP host
+| conn_user           |         | SAP user
+| conn_client         |         | Optional parameter to specify the client (transferred as sap-client URL parameter). In case the option is not specified the default client is used if specified.
+| conn_usestrictssl   | `true`  | SSL mode handling. In case of self signed certificates the useStrictSSL mode option can be set to false to allow an upload of files.
+| base                |         | Base dir
+| files               | **      | Files to upload (relative from basedir)
+| abap_transport      |         | ABAP transport no.
+| abap_package        |         | ABAP package name
+| abap_bsp            |         | ABAP BSP container ID
+| abap_bsp_text       |         | ABAP BSP container name
+| abap_language       | EN      | ABAP language
+| calcappindex        | `false` | Re-calculate application index
+| git_diff_commit     |         | Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) sinse specified state.
+| git_diff_unstaged   | `false` | Include unstaged files in git diff.
+| preserve_unselected | `false` | Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.
+
 ### Examples
 #### Upload to $TMP package
 ```
