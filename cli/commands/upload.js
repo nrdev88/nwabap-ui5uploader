@@ -22,6 +22,7 @@ function UploadCommand () {
         .option("--abap_bsp_text <abap_bsp_text>", "ABAP BSP container name")
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
+        .option("--nwabaprc <nwabaprc>", "Free naming of which .nwabaprc file to use")
         .action(function(_options){
             const options = {
                 conn_server: "",
@@ -39,7 +40,11 @@ function UploadCommand () {
                 calcappindex: false
             };
 
-            if (fs.existsSync('.nwabaprc')) {
+            if (fs.existsSync(_options.nwabaprc)) {
+                console.log(`Using file ${_options.nwabaprc}`)
+                Object.assign(options, JSON.parse(fs.readFileSync(_options.nwabaprc.toString(), 'utf8')));
+            }
+            else if (fs.existsSync('.nwabaprc')) {
                 Object.assign(options, JSON.parse(fs.readFileSync('.nwabaprc', 'utf8')));
             }
 
