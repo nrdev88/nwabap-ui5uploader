@@ -92,7 +92,10 @@ function UploadCommand () {
             // Information messages
             if (options.conn_usestrictssl === true || options.conn_usestrictssl === "true" || options.conn_usestrictssl === "1") {
                 validation.information.push('If HTTPS is used, strict SSL enabled!');
-            }
+		options.conn_usestrictssl = true
+            } else {
+		options.conn_usestrictssl = false
+	    }
 
             validation.information.map(msg => {
                 console.log(colors.blue(msg));
