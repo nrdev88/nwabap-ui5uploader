@@ -149,6 +149,7 @@ function UploadCommand () {
             filestore.syncFiles(files, options.base, function (err) {
                 if (err) {
                     console.log(colors.red('Error!'), err);
+		    process.exitCode = 1;
                 }
             });
         });
