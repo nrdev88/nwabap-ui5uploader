@@ -78,7 +78,7 @@ function UploadCommand() {
                 validation.errors.push('BSP name must not be longer than 15 characters.');
             }
 
-            if (options.abap_package !== '$TMP' && !options.abap_transport) {
+            if (['$', 'T'].indexOf(options.abap_package.charAt(0)) === -1 && !options.abap_transport) {
                 validation.errors.push('You should supply a transport.');
             }
 
