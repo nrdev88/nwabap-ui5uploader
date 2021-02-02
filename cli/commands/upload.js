@@ -1,11 +1,11 @@
 "use strict";
 const program = require('commander');
-const colors = require('colors');
+const colors = require('ansi-colors');
 const fs = require('fs');
 const FileStore = require('../../lib/filestore');
 const glob = require('fast-glob');
 
-function UploadCommand () {
+function UploadCommand() {
     return program
         .command('upload')
         .description('upload some files to SAP')
@@ -23,7 +23,7 @@ function UploadCommand () {
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
         .option("--nwabaprc <nwabaprc>", "Free naming of which .nwabaprc file to use")
-        .action(function(_options){
+        .action(function (_options) {
             const options = {
                 conn_server: "",
                 conn_user: "",
@@ -74,7 +74,7 @@ function UploadCommand () {
             }
 
             // Check for length > 15 excluding /PREFIX/
-            if (options.abap_bsp && options.abap_bsp.substring(options.abap_bsp.lastIndexOf('/')+1).length > 15) {
+            if (options.abap_bsp && options.abap_bsp.substring(options.abap_bsp.lastIndexOf('/') + 1).length > 15) {
                 validation.errors.push('BSP name must not be longer than 15 characters.');
             }
 
@@ -97,10 +97,10 @@ function UploadCommand () {
             // Information messages
             if (options.conn_usestrictssl === true || options.conn_usestrictssl === "true" || options.conn_usestrictssl === "1") {
                 validation.information.push('If HTTPS is used, strict SSL enabled!');
-		options.conn_usestrictssl = true
+                options.conn_usestrictssl = true
             } else {
-		options.conn_usestrictssl = false
-	    }
+                options.conn_usestrictssl = false
+            }
 
             validation.information.map(msg => {
                 console.log(colors.blue(msg));
@@ -109,7 +109,7 @@ function UploadCommand () {
             // Retrieve files
             const files = [];
             try {
-                if(options.base.substr(-1) === '/' || options.base.substr(-1) === '\\') {
+                if (options.base.substr(-1) === '/' || options.base.substr(-1) === '\\') {
                     options.base = options.base.substr(0, options.base.length - 1);
                 }
 
@@ -119,7 +119,7 @@ function UploadCommand () {
                 }).map(file => {
                     files.push(file);
                 });
-            } catch(e) {
+            } catch (e) {
                 console.log(colors.red('Error!'), e);
                 process.exit(1);
             }
@@ -154,7 +154,7 @@ function UploadCommand () {
             filestore.syncFiles(files, options.base, function (err) {
                 if (err) {
                     console.log(colors.red('Error!'), err);
-		    process.exitCode = 1;
+                    process.exitCode = 1;
                 }
             });
         });
