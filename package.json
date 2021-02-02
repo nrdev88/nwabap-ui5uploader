@@ -48,7 +48,6 @@
     "fast-glob": "^3.2.5",
     "figlet": "^1.5.0",
     "isbinaryfile": "^3.0.2",
-    "resolve": "^1.5.0",
     "unirest": "^0.6.0",
     "xmldoc": "^0.4.0"
   }
