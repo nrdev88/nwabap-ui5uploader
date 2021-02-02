@@ -68,6 +68,11 @@ npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user u
     "upload": "npx nwabap upload"
 }
 
+#### Use another .nwabaprc file to upload to multiple systems
+```
+npx nwabap upload --nwabaprc .nwabaprc2
+```
+
 ```
 
 ## Release History
