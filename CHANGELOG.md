@@ -1,3 +1,7 @@
+## TBD
+
+- Removed unused package
+
 ## 1.0.0 (2020-02-02)
 
 - Updated packages fixing some vulnerabilities
