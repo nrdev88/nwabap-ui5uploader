@@ -85,7 +85,11 @@ npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user u
 "scripts": {
     "upload": "npx nwabap upload"
 }
+```
 
+#### Different .nwabaprc location/file
+```
+npx nwabap upload ... --nwabaprc .nwabaprc2
 ```
 
 ## Release History

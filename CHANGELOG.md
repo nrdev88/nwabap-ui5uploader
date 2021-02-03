@@ -1,3 +1,14 @@
+## TBD
+
+- Removed unused package
+
+## 1.0.0 (2020-02-02)
+
+- Updated packages fixing some vulnerabilities
+- Smaller package usage
+- Added functionality to support different .nwabaprc location
+- Updated validation for local/test packages where a transport isn't required
+
 ## 0.3.4 (2019-02-25)
 
 - Updated packages fixing some vulnerabilities
