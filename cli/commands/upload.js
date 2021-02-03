@@ -3,6 +3,7 @@ const program = require('commander');
 const colors = require('ansi-colors');
 const fs = require('fs');
 const FileStore = require('../../lib/filestore');
+const git = require('../../lib/git');
 const glob = require('fast-glob');
 
 function UploadCommand() {
@@ -22,6 +23,9 @@ function UploadCommand() {
         .option("--abap_bsp_text <abap_bsp_text>", "ABAP BSP container name")
         .option("--abap_language <abap_language>", "ABAP language")
         .option("--calcappindex <calcappindex>", "Re-calculate application index")
+        .option("--git_diff_commit", "Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) since specified state.")
+        .option("--git_diff_unstaged", "Include unstaged files in git diff.")
+        .option("--preserve_unselected", "Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.")
         .option("--nwabaprc <nwabaprc>", "Free naming of which .nwabaprc file to use")
         .action(function (_options) {
             const options = {
@@ -37,7 +41,10 @@ function UploadCommand() {
                 abap_bsp: "",
                 abap_bsp_text: "",
                 abap_language: "EN",
-                calcappindex: false
+                calcappindex: false,
+                git_diff_commit: "",
+                git_diff_unstaged: false,
+                preserve_unselected: false
             };
 
             if (fs.existsSync(_options.nwabaprc)) {
@@ -107,19 +114,25 @@ function UploadCommand() {
             });
 
             // Retrieve files
-            const files = [];
+            let files = [];
             try {
                 if (options.base.substr(-1) === '/' || options.base.substr(-1) === '\\') {
                     options.base = options.base.substr(0, options.base.length - 1);
                 }
-
-                glob.sync(options.files, {
-                    cwd: options.base,
-                    onlyFiles: true
-                }).map(file => {
-                    files.push(file);
-                });
-            } catch (e) {
+                if (options.git_diff_commit) {
+                    files = git.diff(
+                        options.base,
+                        options.files,                        
+                        options.git_diff_commit,
+                        options.git_diff_unstaged
+                    );
+                } else {
+                    files = glob.sync(options.files, {
+                        cwd: options.base,
+                        onlyFiles: true
+                    });
+                }
+            } catch(e) {
                 console.log(colors.red('Error!'), e);
                 process.exit(1);
             }
@@ -149,7 +162,8 @@ function UploadCommand() {
                     bspcontainer: options.abap_bsp,
                     bspcontainer_text: options.abap_bsp_text,
                     calc_appindex: (options.calcappindex === true || options.calcappindex === "true" || options.calcappindex === "1")
-                }
+                },
+                preserveUnselected: options.preserve_unselected
             });
             filestore.syncFiles(files, options.base, function (err) {
                 if (err) {
