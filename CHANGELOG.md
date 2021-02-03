@@ -1,6 +1,8 @@
-## TBD
+## 1.1.0
 
 - Removed unused package
+- Added support for git_diff_commit, git_diff_unstaged and preserve_unselected
+- Updated README.md
 
 ## 1.0.0 (2020-02-02)
 
