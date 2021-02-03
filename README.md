@@ -37,20 +37,6 @@ npx nwabap upload --help
 ```
 
 ### Configuration
-It is possible to use a configuration file. Create a `.nwabaprc` file in your package root, i.e.:
-```
-{
-    "base": "./dist",
-    "conn_server": "http://myserver:8000",
-    "conn_user": "upload",
-    "conn_password": "upl04d",
-    "abap_package": "$TMP",
-    "abap_bsp": "ZZ_UI5_LOCAL",
-    "abap_bsp_text": "UI5 upload local objects"
-}
-```
-NOTE: command line arguments are ordered to be mapped after the configuration file. This means that the command line arguments override individual configuration file attributes.
-
 | Option              | Default | Description |
 |---------------------|---------|-------------|
 | conn_server         |         | SAP host
@@ -68,6 +54,22 @@ NOTE: command line arguments are ordered to be mapped after the configuration fi
 | git_diff_commit     |         | Optional git commit, branch or reference to compare current state with. Will only upload files that were somehow changed (added, modified or deleted) since specified state.
 | git_diff_unstaged   | `false` | Include unstaged files in git diff.
 | preserve_unselected | `false` | Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.
+| nwabaprc            |         | If set, specifies a different path for a ./.nwabaprc file
+
+#### .nwabaprc
+It is possible to use a configuration file. If this file exists in the project root, this tool will automatically discover it. Create a `.nwabaprc` file in your package root, i.e.:
+```
+{
+    "base": "./dist",
+    "conn_server": "http://myserver:8000",
+    "conn_user": "upload",
+    "conn_password": "upl04d",
+    "abap_package": "$TMP",
+    "abap_bsp": "ZZ_UI5_LOCAL",
+    "abap_bsp_text": "UI5 upload local objects"
+}
+```
+NOTE: command line arguments are ordered to be mapped after the configuration file. This means that the command line arguments override individual configuration file attributes.
 
 ### Examples
 #### Upload to $TMP package
@@ -89,7 +91,7 @@ npx nwabap upload --base ./dist --conn_server http://myserver:8000 --conn_user u
 
 #### Different .nwabaprc location/file
 ```
-npx nwabap upload ... --nwabaprc .nwabaprc2
+npx nwabap upload ... --nwabaprc ./config/.nwabaprc2
 ```
 
 ## Release History
