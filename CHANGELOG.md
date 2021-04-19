@@ -1,3 +1,7 @@
+## 1.1.1
+
+- Added support for files_start_with_dot
+
 ## 1.1.0
 
 - Removed unused package
