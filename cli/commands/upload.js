@@ -44,7 +44,8 @@ function UploadCommand() {
                 calcappindex: false,
                 git_diff_commit: "",
                 git_diff_unstaged: false,
-                preserve_unselected: false
+                preserve_unselected: false,
+                files_start_with_dot : false
             };
 
             if (fs.existsSync(_options.nwabaprc)) {
@@ -129,7 +130,8 @@ function UploadCommand() {
                 } else {
                     files = glob.sync(options.files, {
                         cwd: options.base,
-                        onlyFiles: true
+                        onlyFiles: true,
+                        dot : options.files_start_with_dot
                     });
                 }
             } catch(e) {
