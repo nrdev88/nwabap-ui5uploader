@@ -1,4 +1,4 @@
-## 1.1.1
+## 1.2.0
 
 - Added support for files_start_with_dot
 
