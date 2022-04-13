@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "ansi-colors": "^4.1.1",
-    "async": "^2.6.0",
+    "async": "^3.2.2",
     "clear": "0.1.0",
     "commander": "^2.13.0",
     "execa": "^4.0.0",
