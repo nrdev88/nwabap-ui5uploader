@@ -1,0 +1,17 @@
+{
+    "base": "./test",
+    "conn_usestrictssl" : false,
+    "conn_server": "http://remote_address:port/",
+    "conn_client" : "client",
+    "conn_user": "user",
+    "conn_password": "passworkd",
+    "abap_package": "package",
+    "abap_bsp": "bsp_name",
+    "abap_bsp_text": "text",
+    "abap_transport": "transport_request",
+    "preserve_unselected": true,
+    "ignore_files": [
+        "test0/test1",
+        "test0/test3/*"
+    ]
+}

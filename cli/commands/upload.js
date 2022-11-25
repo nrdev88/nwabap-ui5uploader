@@ -27,6 +27,7 @@ function UploadCommand() {
         .option("--git_diff_unstaged", "Include unstaged files in git diff.")
         .option("--preserve_unselected", "Don't delete files from BSP container, that were not selected to upload. Useful when using git_diff_commit option to keep unchanged files untouched.")
         .option("--nwabaprc <nwabaprc>", "Free naming of which .nwabaprc file to use")
+        .option("--ignore_files [files]", "Files/folders to be ignored during the upload (e.g. for entire folder, use 'folder_path/folder_name/*')")
         .action(function (_options) {
             const options = {
                 conn_server: "",
@@ -45,7 +46,8 @@ function UploadCommand() {
                 git_diff_commit: "",
                 git_diff_unstaged: false,
                 preserve_unselected: false,
-                files_start_with_dot : false
+                files_start_with_dot : false,
+                ignore_files: []
             };
 
             if (fs.existsSync(_options.nwabaprc)) {
@@ -144,35 +146,85 @@ function UploadCommand() {
                 process.exit(1);
             }
 
-            console.log(colors.yellow(`Found ${files.length} files. Starting upload...`));
+            //Removing Ignored files of the list
+            if(options.ignore_files.length > 0)
+            {
+                let ignored = 0;
 
-            // Prepare to call libs
-            const filestore = new FileStore({
-                conn: {
-                    server: options.conn_server,
-                    client: options.conn_client,
-                    useStrictSSL: options.conn_usestrictssl
-                },
-                auth: {
-                    user: options.conn_user,
-                    pwd: options.conn_password
-                },
-                ui5: {
-                    language: options.abap_language.toUpperCase(),
-                    transportno: options.abap_transport,
-                    package: options.abap_package,
-                    bspcontainer: options.abap_bsp,
-                    bspcontainer_text: options.abap_bsp_text,
-                    calc_appindex: (options.calcappindex === true || options.calcappindex === "true" || options.calcappindex === "1")
-                },
-                preserveUnselected: options.preserve_unselected
-            });
-            filestore.syncFiles(files, options.base, function (err) {
-                if (err) {
-                    console.log(colors.red('Error!'), err);
-                    process.exitCode = 1;
+                options.ignore_files.map((fileToIgnore) => {
+                    
+                    let index = -1;
+
+                    do {
+                        index = files.findIndex((file)=>{
+
+                            let folderPattern = '[\/]{1}[*]{1}$';
+                            let filePattern = `^${fileToIgnore.replace('/*','')}+[\/]{1}`;
+                            const regexFolder = new RegExp(folderPattern);
+                            const regexFile = new RegExp(filePattern);
+    
+                            //check if is a folder pattern
+                            if(regexFolder.test(fileToIgnore)){
+
+                                return regexFile.test(file);
+                            }
+                            else{
+                                return file === fileToIgnore;
+                            }
+                        });
+
+                        if(index >= 0){
+                            files.splice(index, 1);
+                            ignored++;
+                        }
+                        
+                    } while (index >= 0 );
+                });
+
+                if(ignored > 0){
+
+                    console.log(colors.yellow(`Found ${ignored} files to be ignored. Removing from list...`));
                 }
-            });
+                else{
+                    console.log(colors.yellow(`No file found with specified criteria...`));
+                }
+            }
+            
+            if(files.length > 0)
+            {
+                console.log(colors.yellow(`Found ${files.length} files. Starting upload...`));
+
+                // Prepare to call libs
+                const filestore = new FileStore({
+                    conn: {
+                        server: options.conn_server,
+                        client: options.conn_client,
+                        useStrictSSL: options.conn_usestrictssl
+                    },
+                    auth: {
+                        user: options.conn_user,
+                        pwd: options.conn_password
+                    },
+                    ui5: {
+                        language: options.abap_language.toUpperCase(),
+                        transportno: options.abap_transport,
+                        package: options.abap_package,
+                        bspcontainer: options.abap_bsp,
+                        bspcontainer_text: options.abap_bsp_text,
+                        calc_appindex: (options.calcappindex === true || options.calcappindex === "true" || options.calcappindex === "1")
+                    },
+                    preserveUnselected: options.preserve_unselected
+                });
+                filestore.syncFiles(files, options.base, function (err) {
+                    if (err) {
+                        console.log(colors.red('Error!'), err);
+                        process.exitCode = 1;
+                    }
+                });
+            }
+            else{
+                console.log(colors.yellow(`No files found to be uploaded...`));
+            }
         });
 }
 
