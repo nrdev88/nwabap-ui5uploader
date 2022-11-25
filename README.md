@@ -45,6 +45,7 @@ npx nwabap upload --help
 | conn_usestrictssl   | `true`  | SSL mode handling. In case of self signed certificates the useStrictSSL mode option can be set to false to allow an upload of files.
 | base                |         | Base dir
 | files               | **      | Files to upload (relative from basedir)
+| ignore_files        |         | Array with file paths to be ignored
 | abap_transport      |         | ABAP transport no.
 | abap_package        |         | ABAP package name
 | abap_bsp            |         | ABAP BSP container ID
